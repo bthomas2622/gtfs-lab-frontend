@@ -1,2 +1,2 @@
 /* eslint-disable */
-import FormContainer from './js/components/container/FormContainer';
+import StatContainer from './js/components/container/statContainer';
