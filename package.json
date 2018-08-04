@@ -1,0 +1,22 @@
+{
+  "name": "gtfs-lab-frontend",
+  "version": "1.0.0",
+  "description": "Frontend to GTFS Lab project experimenting with General Transit Feed Specification (GTFS)",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ben Thomas",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^5.3.0",
+    "express": "^4.16.3",
+    "path": "^0.12.7",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0"
+  }
+}
