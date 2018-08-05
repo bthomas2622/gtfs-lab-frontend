@@ -1,2 +1,2 @@
 /* eslint-disable */
-import StatContainer from './js/components/container/statContainer';
+import RootContainer from './js/components/container/rootContainer';
