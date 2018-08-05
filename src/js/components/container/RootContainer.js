@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import GtfsLabStat from '../presentational/GtfsLabStat';
 import AgencyInfo from '../presentational/AgencyInfo';
+import GtfsTransportType from '../presentational/GtfsTransportType';
 
 class RootContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      agencies: [{agency_id: 'Placeholder'}]
+      agencies: [{agency_id: 'placeholder'}],
+      transport: [{agency: '1', transport: '2', percentage: '3'}],
     };
   }
 
@@ -19,6 +21,11 @@ class RootContainer extends Component {
         const agencies = res.data;
         this.setState({ agencies });
       });
+    axios.get('http://localhost:3000/static/fetch/transport/types?agency=Marta')
+      .then(res => {
+        const transport = [res.data];
+        this.setState({ transport });
+      });
   }
 
   render() {
@@ -26,6 +33,9 @@ class RootContainer extends Component {
       <div>
         <div className="row">
           <AgencyInfo agencies={this.state.agencies} />
+        </div>
+        <div className="row">
+          <GtfsTransportType transport={this.state.transport} />
         </div>
         <div className="row">
           <GtfsLabStat name='yeyo' />
