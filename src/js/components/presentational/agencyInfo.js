@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AgencyInfo = ( props ) => (
-  <div className="col-md-12">
-    <h1>Agency GTFS Data</h1>
-    <li>{props.name}</li>
-  </div>
-);
+const AgencyInfo = ( props ) => {
+  const agencyList = props.agencies.map((agency) => {
+    return <li key={agency.agency_id}>{ agency.agency_id }</li>;
+  });
+  return <ul>{ agencyList }</ul>;
+};
 
 AgencyInfo.propTypes = {
-  name: PropTypes.string.isRequired,
+  agencies: PropTypes.array.isRequired,
 };
 
 export default AgencyInfo;

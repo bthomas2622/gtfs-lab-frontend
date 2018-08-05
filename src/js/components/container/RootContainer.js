@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import GtfsLabStat from '../presentational/gtfsLabStat';
+import GtfsLabStat from '../presentational/GtfsLabStat';
+import AgencyInfo from '../presentational/AgencyInfo';
 
 class RootContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      agencies: []
+      agencies: [{agency_id: 'Placeholder'}]
     };
   }
 
   componentDidMount() {
-    axios.get('localhost:3000/static/fetch/agencies')
+    axios.get('http://localhost:3000/static/fetch/agencies')
       .then(res => {
         const agencies = res.data;
         this.setState({ agencies });
@@ -22,11 +23,16 @@ class RootContainer extends Component {
 
   render() {
     return (
-      <div className="row">
-        <GtfsLabStat name='yeyo' />
-        <GtfsLabStat name='yeyo2' />
-        <GtfsLabStat name='yeyo3' />
-        <GtfsLabStat name='yeyo4' />
+      <div>
+        <div className="row">
+          <AgencyInfo agencies={this.state.agencies} />
+        </div>
+        <div className="row">
+          <GtfsLabStat name='yeyo' />
+          <GtfsLabStat name='yeyo2' />
+          <GtfsLabStat name='yeyo3' />
+          <GtfsLabStat name='yeyo4' />
+        </div>
       </div>
     );
   }
