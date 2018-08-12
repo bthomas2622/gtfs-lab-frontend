@@ -1,0 +1,32 @@
+body {
+    background-color:#d8e7c0;
+    background-image: 
+    radial-gradient(circle at 100% 150%, #d8e7c0 24%, whitesmoke 25%, whitesmoke 28%, #d8e7c0 29%, #d8e7c0 36%, whitesmoke 36%, whitesmoke 40%, transparent 40%, transparent),
+    radial-gradient(circle at 0    150%, #d8e7c0 24%, whitesmoke 25%, whitesmoke 28%, #d8e7c0 29%, #d8e7c0 36%, whitesmoke 36%, whitesmoke 40%, transparent 40%, transparent),
+    radial-gradient(circle at 50%  100%, whitesmoke 10%, #d8e7c0 11%, #d8e7c0 23%, whitesmoke 24%, whitesmoke 30%, #d8e7c0 31%, #d8e7c0 43%, whitesmoke 44%, whitesmoke 50%, #d8e7c0 51%, #d8e7c0 63%, whitesmoke 64%, whitesmoke 71%, transparent 71%, transparent),
+    radial-gradient(circle at 100% 50%, whitesmoke 5%, #d8e7c0 6%, #d8e7c0 15%, whitesmoke 16%, whitesmoke 20%, #d8e7c0 21%, #d8e7c0 30%, whitesmoke 31%, whitesmoke 35%, #d8e7c0 36%, #d8e7c0 45%, whitesmoke 46%, whitesmoke 49%, transparent 50%, transparent),
+    radial-gradient(circle at 0    50%, whitesmoke 5%, #d8e7c0 6%, #d8e7c0 15%, whitesmoke 16%, whitesmoke 20%, #d8e7c0 21%, #d8e7c0 30%, whitesmoke 31%, whitesmoke 35%, #d8e7c0 36%, #d8e7c0 45%, whitesmoke 46%, whitesmoke 49%, transparent 50%, transparent);
+    background-size:100px 50px;
+}
+
+.jumbotron {
+    background-color: #d8e7c0;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.jumbotron h1 {
+    text-align: center;
+    font-style: italic;
+}
+
+.jumbotron a {
+    color: blue;
+}
+
+.jumbotron a:hover {
+    text-decoration: underline;}
+
+.container {
+    background-color: whitesmoke;
+}
