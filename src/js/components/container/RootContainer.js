@@ -18,16 +18,21 @@ class RootContainer extends Component {
 
   componentDidMount() {
     let agencies;
+    let axiosPromises = [];
     axios.get('http://localhost:3000/static/fetch/agencies')
       .then(res => {
         agencies = res.data;
         this.setState({ agencies });
         agencies.forEach((agency) => {
-          axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`)
-            .then(res => {
-              const agencyTransport = [res.data];
-              this.setState({ transport: this.state.transport.concat(agencyTransport) });
-            });
+          axiosPromises.push(axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+        });
+        axios.all(axiosPromises).then((results) => {
+          results.forEach((res) => {
+            const agencyTransport = [res.data];
+            this.setState({ transport: this.state.transport.concat(agencyTransport) });
+          });
+          const sortedTransport = this.state.transport.sort((a,b) => { return b.percentage - a.percentage; });
+          this.setState({ transport: sortedTransport });
         });
       });
   }
@@ -42,7 +47,16 @@ class RootContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <GtfsTransportType transport={this.state.transport} />
+          <table>
+            <tbody>
+              <tr>
+                <th>Agency</th>
+                <th>Transport Type</th>
+                <th>Percentage</th>
+              </tr>
+              <GtfsTransportType transport={this.state.transport} />
+            </tbody>
+          </table>
         </div>
         <div className="row">
           <GtfsLabStat name='yeyo' />
