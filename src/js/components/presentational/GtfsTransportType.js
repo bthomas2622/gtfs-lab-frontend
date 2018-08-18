@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const GtfsTransportType = ( props ) => {
   const transportEntries = props.transport.map((agencyTransport) => {
-    return (<div className="col-md-12" key='yolo'>
+    return (<div className="col-md-12" key={'agency' + agencyTransport.agency}>
       <h3 key={agencyTransport.agency}>
     Agency: {agencyTransport.agency}
       </h3>

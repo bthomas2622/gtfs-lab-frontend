@@ -11,21 +11,24 @@ class RootContainer extends Component {
     super();
 
     this.state = {
-      agencies: [{agency_id: 'placeholder'}],
-      transport: [{agency: '1', transport: '2', percentage: '3'}],
+      agencies: [],
+      transport: [],
     };
   }
 
   componentDidMount() {
+    let agencies;
     axios.get('http://localhost:3000/static/fetch/agencies')
       .then(res => {
-        const agencies = res.data;
+        agencies = res.data;
         this.setState({ agencies });
-      });
-    axios.get('http://localhost:3000/static/fetch/transport/types?agency=Marta')
-      .then(res => {
-        const transport = [res.data];
-        this.setState({ transport });
+        agencies.forEach((agency) => {
+          axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`)
+            .then(res => {
+              const agencyTransport = [res.data];
+              this.setState({ transport: this.state.transport.concat(agencyTransport) });
+            });
+        });
       });
   }
 
@@ -33,7 +36,10 @@ class RootContainer extends Component {
     return (
       <div>
         <div className="row">
-          <AgencyInfo agencies={this.state.agencies} />
+          <div className="col-md-12">
+            <h3>Transit Agencies Tracked</h3>
+            <AgencyInfo agencies={this.state.agencies} />
+          </div>
         </div>
         <div className="row">
           <GtfsTransportType transport={this.state.transport} />
