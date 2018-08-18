@@ -5,6 +5,7 @@ import GtfsLabStat from '../presentational/GtfsLabStat';
 import AgencyInfo from '../presentational/AgencyInfo';
 import GtfsTransportType from '../presentational/GtfsTransportType';
 import styles from '../../../styles/stylesheet.css';
+import GtfsWeekendRoutes from '../presentational/GtfsWeekendRoutes';
 
 class RootContainer extends Component {
   constructor() {
@@ -13,26 +14,40 @@ class RootContainer extends Component {
     this.state = {
       agencies: [],
       transport: [],
+      weekend: [],
+      geocenter: [],
+      numroutes: [],
+      numtrips: []
     };
   }
 
   componentDidMount() {
     let agencies;
-    let axiosPromises = [];
+    let transportPromises = [];
+    let weekendPromises = [];
     axios.get('http://localhost:3000/static/fetch/agencies')
       .then(res => {
         agencies = res.data;
         this.setState({ agencies });
         agencies.forEach((agency) => {
-          axiosPromises.push(axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          transportPromises.push(axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          weekendPromises.push(axios.get(`http://localhost:3000/static/fetch/weekend?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
         });
-        axios.all(axiosPromises).then((results) => {
+        axios.all(transportPromises).then((results) => {
           results.forEach((res) => {
             const agencyTransport = [res.data];
             this.setState({ transport: this.state.transport.concat(agencyTransport) });
           });
           const sortedTransport = this.state.transport.sort((a,b) => { return b.percentage - a.percentage; });
           this.setState({ transport: sortedTransport });
+        });
+        axios.all(weekendPromises).then((results) => {
+          results.forEach((res) => {
+            const agencyWeekend = [res.data];
+            this.setState({ weekend: this.state.weekend.concat(agencyWeekend) });
+          });
+          const sortedWeekend = this.state.weekend.sort((a,b) => { return b.NumWeekendRoutes - a.NumWeekendRoutes; });
+          this.setState({ weekend: sortedWeekend });
         });
       });
   }
@@ -47,16 +62,29 @@ class RootContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <table>
-            <tbody>
-              <tr>
-                <th>Agency</th>
-                <th>Transport Type</th>
-                <th>Percentage</th>
-              </tr>
-              <GtfsTransportType transport={this.state.transport} />
-            </tbody>
-          </table>
+          <div className="col-md-6">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Agency</th>
+                  <th>Transport Type</th>
+                  <th>Percentage</th>
+                </tr>
+                <GtfsTransportType transport={this.state.transport} />
+              </tbody>
+            </table>
+          </div>
+          <div className="col-md-6">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Agency</th>
+                  <th>Num Weekend Routes</th>
+                </tr>
+                <GtfsWeekendRoutes weekend={this.state.weekend} />
+              </tbody>
+            </table>
+          </div>
         </div>
         <div className="row">
           <GtfsLabStat name='yeyo' />
