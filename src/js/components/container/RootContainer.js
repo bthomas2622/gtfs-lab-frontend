@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import GtfsLabStat from '../presentational/GtfsLabStat';
 import AgencyInfo from '../presentational/AgencyInfo';
 import GtfsTransportType from '../presentational/GtfsTransportType';
 import styles from '../../../styles/stylesheet.css';
 import GtfsWeekendRoutes from '../presentational/GtfsWeekendRoutes';
+import GtfsGeoCenter from '../presentational/GtfsGeoCenter';
 
 class RootContainer extends Component {
   constructor() {
@@ -25,6 +25,7 @@ class RootContainer extends Component {
     let agencies;
     let transportPromises = [];
     let weekendPromises = [];
+    let geoPromises = [];
     axios.get('http://localhost:3000/static/fetch/agencies')
       .then(res => {
         agencies = res.data;
@@ -32,6 +33,7 @@ class RootContainer extends Component {
         agencies.forEach((agency) => {
           transportPromises.push(axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
           weekendPromises.push(axios.get(`http://localhost:3000/static/fetch/weekend?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          geoPromises.push(axios.get(`http://localhost:3000/static/fetch/geo?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
         });
         axios.all(transportPromises).then((results) => {
           results.forEach((res) => {
@@ -48,6 +50,12 @@ class RootContainer extends Component {
           });
           const sortedWeekend = this.state.weekend.sort((a,b) => { return b.NumWeekendRoutes - a.NumWeekendRoutes; });
           this.setState({ weekend: sortedWeekend });
+        });
+        axios.all(geoPromises).then((results) => {
+          results.forEach((res) => {
+            const agencyGeo = [res.data];
+            this.setState({ geocenter: this.state.geocenter.concat(agencyGeo) });
+          });
         });
       });
   }
@@ -87,10 +95,18 @@ class RootContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <GtfsLabStat name='yeyo' />
-          <GtfsLabStat name='yeyo2' />
-          <GtfsLabStat name='yeyo3' />
-          <GtfsLabStat name='yeyo4' />
+          <div className="col-md-6">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Agency</th>
+                  <th>Average Latitute</th>
+                  <th>Average Longitude</th>
+                </tr>
+                <GtfsGeoCenter geocenter={this.state.geocenter} />
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
