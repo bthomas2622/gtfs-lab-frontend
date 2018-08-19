@@ -86,13 +86,13 @@ class RootContainer extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-md-12 agencies">
             <h3>Transit Agencies Tracked</h3>
             <AgencyInfo agencies={this.state.agencies} />
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-6 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -103,8 +103,11 @@ class RootContainer extends Component {
                 <GtfsTransportType transport={this.state.transport} />
               </tbody>
             </table>
+            <p className="tabledesc">
+              The most common transportation type across all routes.
+            </p>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -114,10 +117,13 @@ class RootContainer extends Component {
                 <GtfsWeekendRoutes weekend={this.state.weekend} />
               </tbody>
             </table>
+            <p className="tabledesc">
+              The number of routes available on the weekend.
+            </p>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-6 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -127,8 +133,11 @@ class RootContainer extends Component {
                 <GtfsNumRoutes numroutes={this.state.numroutes} />
               </tbody>
             </table>
+            <p className="tabledesc">
+              Total transit routes provided by agency. A route is a group of trips that are displayed to riders as a single service. 
+            </p>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -138,10 +147,13 @@ class RootContainer extends Component {
                 <GtfsNumTrips numtrips={this.state.numtrips} />
               </tbody>
             </table>
+            <p className="tabledesc">
+              Total trips provided by agency. A trip is a sequence of two or more stops that occurs at specific time. 
+            </p>
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-md-12 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -152,6 +164,9 @@ class RootContainer extends Component {
                 <GtfsGeoCenter geocenter={this.state.geocenter} />
               </tbody>
             </table>
+            <p className="tabledesc">
+              The average of the latitudinal and longitudinal coordinates for all stops. 
+            </p>
           </div>
         </div>
       </div>

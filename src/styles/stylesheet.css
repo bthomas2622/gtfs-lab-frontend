@@ -17,11 +17,13 @@ body {
 
 .jumbotron h1 {
     text-align: center;
-    font-style: italic;
+    font-size: 3.5em;
+    text-decoration: overline underline;
+    font-family: 'Signika', sans-serif;
 }
 
 .jumbotron a {
-    color: blue;
+    color: #ba3039;
 }
 
 .jumbotron a:hover {
@@ -29,4 +31,62 @@ body {
 
 .container {
     background-color: whitesmoke;
+}
+
+.agencies h3 {
+    text-align: left;
+    padding-left: 3%;
+}
+
+.tabledesc {
+    color: #ba3039;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    font-size: .9em;
+}
+
+table {
+    border: 2px solid whitesmoke;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+table td, table th {
+    border: 1px solid white;
+    padding: 3px 4px;
+}
+table tbody td {
+    font-size: .85em;
+}
+table td:nth-child(even) {
+    background: #EBEBEB;
+}
+table thead {
+    background: #FFFFFF;
+    border-bottom: 4px solid #333333;
+}
+table thead th {
+    font-size: .95em;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    border-left: 2px solid #333333;
+}
+table thead th:first-child {
+    border-left: none;
+}
+table tfoot {
+    font-size: .875em;
+    font-weight: bold;
+    color: #333333;
+    border-top: 4px solid #333333;
+}
+table tfoot td {
+    font-size: 14px;
+} 
+
+.gtfstable {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
