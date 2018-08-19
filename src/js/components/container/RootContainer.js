@@ -24,22 +24,23 @@ class RootContainer extends Component {
   }
 
   componentDidMount() {
+    const backendPath = 'https://gtfs-lab.herokuapp.com';
     let agencies;
     let transportPromises = [];
     let weekendPromises = [];
     let geoPromises = [];
     let numroutesPromises = [];
     let numtripsPromises = [];
-    axios.get('http://localhost:3000/static/fetch/agencies')
+    axios.get(`${backendPath}/static/fetch/agencies`)
       .then(res => {
         agencies = res.data;
         this.setState({ agencies });
         agencies.forEach((agency) => {
-          transportPromises.push(axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
-          weekendPromises.push(axios.get(`http://localhost:3000/static/fetch/weekend?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
-          geoPromises.push(axios.get(`http://localhost:3000/static/fetch/geo?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
-          numroutesPromises.push(axios.get(`http://localhost:3000/static/fetch/count?agencyKey=${agency.agency_key}&agency=${agency.agency_id}&dataset=routes`));
-          numtripsPromises.push(axios.get(`http://localhost:3000/static/fetch/count?agencyKey=${agency.agency_key}&agency=${agency.agency_id}&dataset=trips`));
+          transportPromises.push(axios.get(`${backendPath}/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          weekendPromises.push(axios.get(`${backendPath}/static/fetch/weekend?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          geoPromises.push(axios.get(`${backendPath}/static/fetch/geo?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          numroutesPromises.push(axios.get(`${backendPath}/static/fetch/count?agencyKey=${agency.agency_key}&agency=${agency.agency_id}&dataset=routes`));
+          numtripsPromises.push(axios.get(`${backendPath}/static/fetch/count?agencyKey=${agency.agency_key}&agency=${agency.agency_id}&dataset=trips`));
         });
         axios.all(transportPromises).then((results) => {
           results.forEach((res) => {
