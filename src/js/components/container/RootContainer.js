@@ -6,6 +6,8 @@ import GtfsTransportType from '../presentational/GtfsTransportType';
 import styles from '../../../styles/stylesheet.css';
 import GtfsWeekendRoutes from '../presentational/GtfsWeekendRoutes';
 import GtfsGeoCenter from '../presentational/GtfsGeoCenter';
+import GtfsNumRoutes from '../presentational/GtfsNumRoutes';
+import GtfsNumTrips from '../presentational/GtfsNumTrips';
 
 class RootContainer extends Component {
   constructor() {
@@ -26,6 +28,8 @@ class RootContainer extends Component {
     let transportPromises = [];
     let weekendPromises = [];
     let geoPromises = [];
+    let numroutesPromises = [];
+    let numtripsPromises = [];
     axios.get('http://localhost:3000/static/fetch/agencies')
       .then(res => {
         agencies = res.data;
@@ -34,6 +38,8 @@ class RootContainer extends Component {
           transportPromises.push(axios.get(`http://localhost:3000/static/fetch/transport/types?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
           weekendPromises.push(axios.get(`http://localhost:3000/static/fetch/weekend?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
           geoPromises.push(axios.get(`http://localhost:3000/static/fetch/geo?agencyKey=${agency.agency_key}&agency=${agency.agency_id}`));
+          numroutesPromises.push(axios.get(`http://localhost:3000/static/fetch/count?agencyKey=${agency.agency_key}&agency=${agency.agency_id}&dataset=routes`));
+          numtripsPromises.push(axios.get(`http://localhost:3000/static/fetch/count?agencyKey=${agency.agency_key}&agency=${agency.agency_id}&dataset=trips`));
         });
         axios.all(transportPromises).then((results) => {
           results.forEach((res) => {
@@ -56,6 +62,22 @@ class RootContainer extends Component {
             const agencyGeo = [res.data];
             this.setState({ geocenter: this.state.geocenter.concat(agencyGeo) });
           });
+        });
+        axios.all(numroutesPromises).then((results) => {
+          results.forEach((res) => {
+            const agencyNumroutes = [res.data];
+            this.setState({ numroutes: this.state.numroutes.concat(agencyNumroutes) });
+          });
+          const sortedNumroutes = this.state.numroutes.sort((a,b) => { return b.count - a.count; });
+          this.setState({ numroutes: sortedNumroutes });
+        });
+        axios.all(numtripsPromises).then((results) => {
+          results.forEach((res) => {
+            const agencyNumtrips = [res.data];
+            this.setState({ numtrips: this.state.numtrips.concat(agencyNumtrips) });
+          });
+          const sortedNumtrips = this.state.numtrips.sort((a,b) => { return b.count - a.count; });
+          this.setState({ numtrips: sortedNumtrips });
         });
       });
   }
@@ -96,6 +118,30 @@ class RootContainer extends Component {
         </div>
         <div className="row">
           <div className="col-md-6">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Agency</th>
+                  <th>Total Routes Count</th>
+                </tr>
+                <GtfsNumRoutes numroutes={this.state.numroutes} />
+              </tbody>
+            </table>
+          </div>
+          <div className="col-md-6">
+            <table>
+              <tbody>
+                <tr>
+                  <th>Agency</th>
+                  <th>Total Trips Count</th>
+                </tr>
+                <GtfsNumTrips numtrips={this.state.numtrips} />
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
             <table>
               <tbody>
                 <tr>
