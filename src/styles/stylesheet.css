@@ -38,8 +38,16 @@ body {
     padding-left: 3%;
 }
 
-.tabledesc {
+.tabletitle {
     color: #ba3039;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    font-size: 1em;
+}
+
+.tabledesc {
+    color: black;
     font-weight: bold;
     text-align: center;
     margin: 0;

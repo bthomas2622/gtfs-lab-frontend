@@ -94,6 +94,9 @@ class RootContainer extends Component {
         </div>
         <div className="row">
           <div className="col-md-6 gtfstable">
+            <p className="tabletitle">
+              MOST COMMON TRANSPORT TYPE
+            </p>
             <table>
               <tbody>
                 <tr>
@@ -104,11 +107,11 @@ class RootContainer extends Component {
                 <GtfsTransportType transport={this.state.transport} />
               </tbody>
             </table>
-            <p className="tabledesc">
-              The most common transportation type across all routes.
-            </p>
           </div>
           <div className="col-md-6 gtfstable">
+            <p className="tabletitle">
+              NUMBER OF WEEKEND ROUTES
+            </p>
             <table>
               <tbody>
                 <tr>
@@ -118,13 +121,13 @@ class RootContainer extends Component {
                 <GtfsWeekendRoutes weekend={this.state.weekend} />
               </tbody>
             </table>
-            <p className="tabledesc">
-              The number of routes available on the weekend.
-            </p>
           </div>
         </div>
         <div className="row">
           <div className="col-md-6 gtfstable">
+            <p className="tabletitle">
+              TOTAL TRANSIT ROUTES
+            </p>
             <table>
               <tbody>
                 <tr>
@@ -135,10 +138,13 @@ class RootContainer extends Component {
               </tbody>
             </table>
             <p className="tabledesc">
-              Total transit routes provided by agency. A route is a group of trips that are displayed to riders as a single service. 
+              A route is an ordered group of stops that are displayed to riders as a single service. 
             </p>
           </div>
           <div className="col-md-6 gtfstable">
+            <p className="tabletitle">
+              TOTAL TRANSIT TRIPS 
+            </p>
             <table>
               <tbody>
                 <tr>
@@ -149,12 +155,15 @@ class RootContainer extends Component {
               </tbody>
             </table>
             <p className="tabledesc">
-              Total trips provided by agency. A trip is a sequence of two or more stops that occurs at specific time. 
+              A trip is a sequence of two or more stops that occurs at specific time. 
             </p>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12 gtfstable">
+            <p className="tabletitle">
+              AVG GEO LOCATION 
+            </p>
             <table>
               <tbody>
                 <tr>
