@@ -1,1 +1,1 @@
-import RootContainer from './js/components/container/rootContainer';
+import RootContainer from './js/components/container/RootContainer';
