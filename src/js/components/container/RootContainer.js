@@ -8,6 +8,7 @@ import GtfsWeekendRoutes from '../presentational/GtfsWeekendRoutes';
 import GtfsGeoCenter from '../presentational/GtfsGeoCenter';
 import GtfsNumRoutes from '../presentational/GtfsNumRoutes';
 import GtfsNumTrips from '../presentational/GtfsNumTrips';
+import Visualize from '../presentational/Visualize';
 
 class RootContainer extends Component {
   constructor() {
@@ -93,7 +94,7 @@ class RootContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 gtfstable">
+          <div className="col-md-9 gtfstable">
             <p className="tabletitle">
               MOST COMMON TRANSPORT TYPE
             </p>
@@ -108,7 +109,12 @@ class RootContainer extends Component {
               </tbody>
             </table>
           </div>
-          <div className="col-md-6 gtfstable">
+          <div className="col-md-3 gtfsvisual">
+              <Visualize data={this.state.weekend} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-9 gtfstable">
             <p className="tabletitle">
               NUMBER OF WEEKEND ROUTES
             </p>
@@ -121,6 +127,9 @@ class RootContainer extends Component {
                 <GtfsWeekendRoutes weekend={this.state.weekend} />
               </tbody>
             </table>
+          </div>
+          <div className="col-md-3 gtfsvisual">
+              <Visualize data={this.state.weekend} />
           </div>
         </div>
         <div className="row">

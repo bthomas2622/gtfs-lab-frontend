@@ -98,3 +98,13 @@ table tfoot td {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.gtfsvisual {
+    padding: 0;
+}
+
+.VictoryContainer svg text {display: none;}
+
+.VictoryContainer {max-height: 185px;}
+
+.VictoryContainer svg {max-height: 185px;}
