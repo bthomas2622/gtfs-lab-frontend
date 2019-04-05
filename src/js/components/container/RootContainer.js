@@ -8,6 +8,7 @@ import GtfsWeekendRoutes from '../presentational/GtfsWeekendRoutes';
 import GtfsGeoCenter from '../presentational/GtfsGeoCenter';
 import GtfsNumRoutes from '../presentational/GtfsNumRoutes';
 import GtfsNumTrips from '../presentational/GtfsNumTrips';
+import VisualizeBar from '../presentational/VisualizeBar';
 
 class RootContainer extends Component {
   constructor() {
@@ -93,7 +94,7 @@ class RootContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-6 gtfstable">
+          <div className="col-md-12 gtfstable">
             <p className="tabletitle">
               MOST COMMON TRANSPORT TYPE
             </p>
@@ -108,10 +109,14 @@ class RootContainer extends Component {
               </tbody>
             </table>
           </div>
-          <div className="col-md-6 gtfstable">
-            <p className="tabletitle">
+        </div>
+        <div className="row">
+          <p className="tabletitle col-md-12">
               NUMBER OF WEEKEND ROUTES
-            </p>
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -122,12 +127,17 @@ class RootContainer extends Component {
               </tbody>
             </table>
           </div>
+          <div className="col-xl-3 col-lg-3 col-md-3 d-none d-md-block gtfsvisual">
+              <VisualizeBar data={this.state.weekend} metric="NumWeekendRoutes" />
+          </div>
         </div>
         <div className="row">
-          <div className="col-md-6 gtfstable">
-            <p className="tabletitle">
-              TOTAL TRANSIT ROUTES
-            </p>
+          <p className="tabletitle col-md-12">
+            TOTAL TRANSIT ROUTES
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 gtfstable">
             <table>
               <tbody>
                 <tr>
@@ -141,11 +151,18 @@ class RootContainer extends Component {
               A route is an ordered group of stops that are displayed to riders as a single service. 
             </p>
           </div>
-          <div className="col-md-6 gtfstable">
-            <p className="tabletitle">
-              TOTAL TRANSIT TRIPS 
-            </p>
-            <table>
+          <div className="col-xl-3 col-lg-3 col-md-3 d-none d-md-block gtfsvisual">
+              <VisualizeBar data={this.state.numroutes} metric="count" />
+          </div>
+        </div>
+        <div className="row">
+          <p className="tabletitle col-md-12">
+            TOTAL TRANSIT TRIPS
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12 gtfstable">
+          <table>
               <tbody>
                 <tr>
                   <th>Agency</th>
@@ -157,6 +174,9 @@ class RootContainer extends Component {
             <p className="tabledesc">
               A trip is a sequence of two or more stops that occurs at specific time. 
             </p>
+          </div>
+          <div className="col-xl-3 col-lg-3 col-md-3 d-none d-md-block gtfsvisual">
+              <VisualizeBar data={this.state.numtrips} metric="count" />
           </div>
         </div>
         <div className="row">

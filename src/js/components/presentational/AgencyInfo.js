@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const AgencyInfo = ( props ) => {
   const agencyList = props.agencies.map((agency) => {
-    return <li key={agency.agency_id}>{ agency.agency_name } ({ agency.agency_id })</li>;
+    return <li key={agency.agency_id}><span className={'dot' + agency.agency_key}></span> { agency.agency_name } ({ agency.agency_id })
+    </li>;
   });
   return <ul>{ agencyList }</ul>;
 };
