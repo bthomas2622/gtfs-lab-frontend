@@ -104,6 +104,10 @@ table tfoot td {
     padding-bottom: 10px;
 }
 
-.VictoryContainer {max-height: 145px;}
+.VictoryContainer {max-height: 165px;}
 
-.VictoryContainer svg {max-height: 145px;}
+.VictoryContainer svg {
+    max-height: 165px;
+    padding-top: 30px;
+}
+

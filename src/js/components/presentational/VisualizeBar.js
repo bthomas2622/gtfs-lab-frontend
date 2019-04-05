@@ -10,7 +10,7 @@ const VisualizeBar = (props) => {
   } else {
     props.data.forEach(agency => {
       curAgency = agency.agency;
-      graphData.push({ x: curAgency, y: agency.NumWeekendRoutes})
+      graphData.push({ x: curAgency, y: agency[props.metric]})
     });
     graphData.sort(function(a, b) {
       return b.y - a.y;
@@ -40,6 +40,7 @@ const VisualizeBar = (props) => {
 
 VisualizeBar.propTypes = {
   data: PropTypes.array.isRequired,
+  metric: PropTypes.string.isRequired,
 };
 
 export default VisualizeBar;
