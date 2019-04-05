@@ -111,10 +111,12 @@ class RootContainer extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-9 gtfstable">
-            <p className="tabletitle">
+          <p className="tabletitle col-md-12">
               NUMBER OF WEEKEND ROUTES
-            </p>
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-md-9 gtfstable">
             <table>
               <tbody>
                 <tr>

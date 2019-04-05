@@ -1,34 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { VictoryChart, VictoryBar, VictoryAxis } from 'victory';
+import { VictoryBar } from 'victory';
 
 const VisualizeBar = (props) => {
-  let agencies = [];
+  let curAgency;
   let graphData = [];
-  props.data.forEach(agency => {
-    agencies.push(agency.agency);
-    graphData.push({ x: agency.agency, y: agency.NumWeekendRoutes, fill: "red"})
-  });
-  graphData.sort(function(a, b) {
-    return a.y - b.y;
-  })
-  if (agencies.length < 5) {
+  if (props.data.length < 5) {
     return null;
   } else {
-    console.log(graphData);
+    props.data.forEach(agency => {
+      curAgency = agency.agency;
+      graphData.push({ x: curAgency, y: agency.NumWeekendRoutes})
+    });
+    graphData.sort(function(a, b) {
+      return b.y - a.y;
+    })
     return (
         <VictoryBar
           alignment="middle"
           animate={{
             onLoad: { duration: 1500 }
           }}
-          horizontal="true"
           barRatio={1}
+          cornerRadius={10}
           data={graphData}
+          horizontal={false}
+          padding={{ top: 0, bottom: 0, left: 40, right: 40 }}
           style={{
             data: {
-              fill: (d) => d.fill,
-              opacity: 1,
+              fill: "black",
+              fillOpacity: 0.7,
+              stroke: "black",
+              strokeWidth: 3
             },
           }}
       />)

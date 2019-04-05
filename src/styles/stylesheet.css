@@ -100,11 +100,10 @@ table tfoot td {
 }
 
 .gtfsvisual {
-    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
-/* .VictoryContainer svg text {display: none;} */
+.VictoryContainer {max-height: 145px;}
 
-.VictoryContainer {max-height: 185px;}
-
-.VictoryContainer svg {max-height: 185px;}
+.VictoryContainer svg {max-height: 145px;}
