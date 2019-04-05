@@ -103,7 +103,7 @@ table tfoot td {
     padding: 0;
 }
 
-.VictoryContainer svg text {display: none;}
+/* .VictoryContainer svg text {display: none;} */
 
 .VictoryContainer {max-height: 185px;}
 

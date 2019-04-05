@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryTheme, VictoryPie } from 'victory';
 
-const Visualize = (props) => {
+const VisualizePie = (props) => {
   let agencies = [];
   let graphData = [];
   let tickCount = [];
@@ -38,8 +38,8 @@ const Visualize = (props) => {
   }
 }
 
-Visualize.propTypes = {
+VisualizePie.propTypes = {
   data: PropTypes.array.isRequired,
 };
 
-export default Visualize;
+export default VisualizePie;
