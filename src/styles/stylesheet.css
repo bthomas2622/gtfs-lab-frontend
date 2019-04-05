@@ -38,6 +38,41 @@ body {
     padding-left: 3%;
 }
 
+.dot1 {
+    height: 10px;
+    width: 30px;
+    background-color: black;
+    display: inline-block;
+}
+
+.dot2 {
+    height: 10px;
+    width: 30px;
+    background-color: blue;
+    display: inline-block;
+}
+
+.dot4 {
+    height: 10px;
+    width: 30px;
+    background-color: gold;
+    display: inline-block;
+}
+
+.dot5 {
+    height: 10px;
+    width: 30px;
+    background-color: red;
+    display: inline-block;
+}
+
+.dot6 {
+    height: 10px;
+    width: 30px;
+    background-color: green;
+    display: inline-block;
+}
+
 .tabletitle {
     color: #ba3039;
     font-weight: bold;
@@ -95,12 +130,10 @@ table tfoot td {
 } 
 
 .gtfstable {
-    padding-top: 10px;
     padding-bottom: 10px;
 }
 
 .gtfsvisual {
-    padding-top: 10px;
     padding-bottom: 10px;
 }
 
@@ -111,3 +144,6 @@ table tfoot td {
     padding-top: 30px;
 }
 
+ul {
+    list-style-type: none;
+}

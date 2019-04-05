@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { VictoryBar } from 'victory';
+import agencyColorMapper from '../../../util/agencyColorMapper'
 
 const VisualizeBar = (props) => {
   let curAgency;
   let graphData = [];
+  let fillColor;
   if (props.data.length < 5) {
     return null;
   } else {
     props.data.forEach(agency => {
       curAgency = agency.agency;
-      graphData.push({ x: curAgency, y: agency[props.metric]})
+      fillColor = agencyColorMapper[curAgency.substring(0, 3)];
+      graphData.push({ x: curAgency, y: agency[props.metric], fill: fillColor})
     });
     graphData.sort(function(a, b) {
       return b.y - a.y;
@@ -28,7 +31,7 @@ const VisualizeBar = (props) => {
           padding={{ top: 0, bottom: 0, left: 40, right: 40 }}
           style={{
             data: {
-              fill: "black",
+              fill: d => d.fill,
               fillOpacity: 0.7,
               stroke: "black",
               strokeWidth: 3
